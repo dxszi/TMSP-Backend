@@ -41,8 +41,8 @@ public class RoleService {
     public List<RoleEntity> saveRole(List<RoleEntity> roleEntities) {
         return roleRepository.saveAll(roleEntities);
     }
-    public void deleteRole(RoleEntity roleEntity) {
-        roleRepository.delete(roleEntity);
+    public void deleteRole(Integer id) {
+        roleRepository.deleteById(id);
     }
     public List<RoleEntity> findByRoleName(String roleName) {
         return roleRepository.findByRoleName(roleName);

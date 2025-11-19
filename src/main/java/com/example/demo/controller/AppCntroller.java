@@ -159,6 +159,10 @@ public class AppCntroller {
         List<RoleEntity> roleEntities = roleService.findByRoleName(roleName);
         return ResponseEntity.ok(Utility.copyRoleResponse(roleEntities));
     }
+    @DeleteMapping(path = "/deleteRole/{roleId}", produces = "application/json")
+    public void deleteRole(@PathVariable Integer roleId){
+        roleService.deleteRole(roleId);
+    }
     @RequestMapping(path = "/getAllPermissions", produces = "application/json")
     public ResponseEntity<List<PermissionResponse>>  getAllPermissions(){
         return permissionService.getAllPermissions();

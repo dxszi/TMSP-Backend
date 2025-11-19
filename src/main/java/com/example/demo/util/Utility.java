@@ -1,7 +1,6 @@
 package com.example.demo.util;
 
 import com.example.demo.model.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -84,7 +83,6 @@ public class Utility {
 
         return employeeEntities;
     }
-
     public static EmployeeResponse copyEmployeeResponse(EmployeeEntity employeeEntity) {
         EmployeeResponse employeeResponse = new EmployeeResponse();
         employeeResponse.setUserId(employeeEntity.getUserId());
@@ -94,10 +92,8 @@ public class Utility {
         employeeResponse.setPassword(employeeEntity.getPassword());
         employeeResponse.setUserName(employeeEntity.getUserName());
 
-
         return employeeResponse;
     }
-
     public static List<EmployeeResponse> copyEmployeeResponse(List<EmployeeEntity> employeeEntities) {
         List<EmployeeResponse> userResponses = new ArrayList<>();
         for (EmployeeEntity employeeEntity : employeeEntities) {
@@ -178,5 +174,4 @@ public class Utility {
         }
         return permissionResponses;
     }
-
 }
