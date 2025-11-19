@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.model.PermissionEntity;
+import com.example.demo.model.PermissionResponse;
 import com.example.demo.model.RoleEntity;
 import com.example.demo.repositoty.PermissionRepository;
 import com.example.demo.repositoty.RoleRepository;
+import com.example.demo.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +27,23 @@ public class PermissionService {
 
     public List<PermissionEntity> findAllPermissions() {
         return permissionRepository.findAll();
+    }
+    public ResponseEntity<List<PermissionResponse>> getAllPermissions() {
+        try {
+            List<PermissionEntity> permissionEntities = findAllPermissions();
+
+            if (permissionEntities == null || permissionEntities.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            List<PermissionResponse> permissionResponse = Utility.copyPermissionResponse(permissionEntities);
+            return ResponseEntity.ok(permissionResponse);
+        }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
     public void deletePermission(Integer permissionId) {
         permissionRepository.deleteById(permissionId);

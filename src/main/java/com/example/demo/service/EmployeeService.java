@@ -68,7 +68,10 @@ public class EmployeeService {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee or Task not found");
             }
             employeeEntity.getTask().add(taskEntity);
+            taskEntity.getEmployee().add(employeeEntity);
+
             employeeRepository.save(employeeEntity);
+            taskRepository.save(taskEntity);
 
             return ResponseEntity.ok("Task assigned to Employee successfully");
         }catch (Exception e){

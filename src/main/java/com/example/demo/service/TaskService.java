@@ -29,9 +29,6 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public void deleteTask(Integer taskId){
-        taskRepository.deleteById(taskId);
-    }
     public ResponseEntity<List<TaskResponse>> getAllTasks(){
         try{
             List<TaskEntity> taskEntities = findAllTasks();
@@ -51,6 +48,10 @@ public class TaskService {
     }
 
     //public List<TaskEntity> findAllTasksByUserName(String userName){}
+
+    public void deleteTask(Integer taskId){
+        taskRepository.deleteById(taskId);
+    }
 
     public List<TaskEntity> findByTitle(String title){
         return taskRepository.findByTitle(title);

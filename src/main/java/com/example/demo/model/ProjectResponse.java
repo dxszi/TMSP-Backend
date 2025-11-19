@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ProjectResponse {
-    private String projectId;
+    private Integer projectId;
     private String projectName;
     private String projectDescription;
     private String projectStatus;
